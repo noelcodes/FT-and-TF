@@ -1,0 +1,25 @@
+python classify.py --model output/fashion.model --categorybin output/category_lb.pickle --colorbin output/color_lb.pickle --image examples/black_jeans.jpg
+python classify.py --model output/fashion.model --categorybin output/category_lb.pickle --colorbin output/color_lb.pickle --image examples/blue_shoes.jpg
+python classify.py --model output/fashion.model --categorybin output/category_lb.pickle --colorbin output/color_lb.pickle --image examples/black_dress.jpg
+
+python train.py --dataset dataset --model output/fashion.model --categorybin output/category_lb.pickle --colorbin output/color_lb.pickle
+set "KERAS_BACKEND=tensorflow"
+====================================================================================================================
+losses = {
+	"category_output": "categorical_crossentropy",
+	"color_output": "binary_crossentropy",
+}
+numColors=2
+	def build_color_branch(inputs, numColors=2, finalAct="softmax",
+		chanDim=-1):
+ValueError: Error when checking target: expected color_output to have shape (None, 2) but got array with shape (18964, 1)
+.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+47s - loss: 0.4313 - category_output_loss: 0.2273 - color_output_loss: 0.2041 - category_output_acc: 0.9184 - color_output_acc: 0.9213 
+- val_loss: 0.8862 - val_category_output_loss: 0.6746 - val_color_output_loss: 0.2115 - val_category_output_acc: 0.8232 - val_color_output_acc: 0.9191
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+python train.py --dataset dataset --model output/noelnet.h5 --agebin output/age_lb.pickle --genderbin output/gender_lb.pickle --racebin output/race_lb.pickle
+python classify.py --model output/noelnet.h5 --agebin output/age_lb.pickle --genderbin output/gender_lb.pickle --racebin output/race_lb.pickle --image examples/36_1_0_20170103182848826.jpg.chip.jpg
